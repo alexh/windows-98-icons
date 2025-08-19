@@ -6,7 +6,7 @@
 A nostalgic Windows 95-styled React web application for searching and downloading Windows 98 icons with AI-powered semantic search using transformers.js running entirely in the browser.
 
 ## 🎮 Live Demo
-**[➤ Try it live: alexh.github.io/windows-98-icons](https://alexh.github.io/windows-98-icons)**
+**[➤ Try it live](https://alexh.github.io/windows-98-icons)**
 
 ## 📱 Web UI Preview
 
@@ -47,7 +47,7 @@ A nostalgic Windows 95-styled React web application for searching and downloadin
 ![Globe](https://raw.githubusercontent.com/alexh/windows-98-icons/main/static/icons/globe_map_0.png)
 ![Network PCs](https://raw.githubusercontent.com/alexh/windows-98-icons/main/static/icons/network_normal_two_pcs_0.png)
 ![Dialup](https://raw.githubusercontent.com/alexh/windows-98-icons/main/static/icons/conn_dialup.png)
-![MSN](https://raw.githubusercontent.com/alexh/windows-98-icons/main/static/icons/msn_0.png)
+![MSN](https://raw.githubusercontent.com/alexh/windows-98-icons/main/static/icons/msn3_5.png)
 
 ### 🎮 Games & Entertainment
 ![Solitaire](https://raw.githubusercontent.com/alexh/windows-98-icons/main/static/icons/game_solitaire_0.png)
