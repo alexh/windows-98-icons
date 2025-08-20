@@ -24,6 +24,12 @@ const AppContainer = styled.div`
   min-height: 100vh;
   padding: 20px;
   box-sizing: border-box;
+  
+  @media (max-height: 500px) and (orientation: landscape) {
+    padding: 10px;
+    min-height: 100vh;
+    height: 100vh;
+  }
 `
 
 const MainWindow = styled(Window)`
@@ -33,6 +39,11 @@ const MainWindow = styled(Window)`
   min-height: 600px;
   display: flex;
   flex-direction: column;
+  
+  @media (max-height: 500px) and (orientation: landscape) {
+    height: 95vh;
+    min-height: unset;
+  }
 `
 
 const SearchContainer = styled.div`
