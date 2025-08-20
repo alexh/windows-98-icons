@@ -5,12 +5,9 @@
 
 A nostalgic Windows 95-styled React web application for searching and downloading Windows 98 icons with AI-powered semantic search using transformers.js running entirely in the browser.
 
-## 🎮 Live Demo
-**[➤ Try it live](https://alexh.github.io/windows-98-icons)**
-
-## 📱 Web UI Preview
-
 <div align="center">
+
+# **[DEMO](https://alexh.github.io/windows-98-icons)**
 
 ![Windows 98 UI Demo](https://raw.githubusercontent.com/alexh/windows-98-icons/main/static/demo.png)
 
@@ -199,26 +196,6 @@ CREATE VIRTUAL TABLE icons_fts USING fts5(
 
 ## Development
 
-### File Structure
-
-```
-windows_98_icons/
-├── PRD.md                      # Product requirements
-├── README.md                   # This file
-├── pyproject.toml              # Python dependencies
-├── scraper.py                  # Icon scraper script
-├── process_icons.py            # AI description generator
-├── build_db.py                 # Database builder
-├── icons_metadata.json         # Scraped icon metadata
-├── icons_processed.json        # AI-processed icons
-└── static/                     # Deployable static site
-    ├── index.html              # Main interface
-    ├── app.js                  # Search logic
-    ├── style.css               # Windows 98 theme
-    ├── icons.db                # SQLite database
-    └── icons/                  # Icon image files
-```
-
 ### Adding New Icons
 
 1. Add icon files to `static/icons/`
@@ -245,7 +222,6 @@ The `static/` directory can be deployed to any static hosting service:
 ## Performance
 
 - **Database Size**: ~10-15MB total (includes all icons + embeddings)
-- **Load Time**: < 3 seconds on Raspberry Pi
 - **Search Speed**: < 100ms for most queries
 - **Browser Support**: Modern browsers with WebAssembly support
 
