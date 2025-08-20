@@ -106,7 +106,7 @@ function executeQuery(db, sql, params) {
       description: row.description,
       width: row.width,
       height: row.height,
-      webPath: row.local_path ? row.local_path.replace(/^static\//, '/') : null
+      webPath: row.local_path ? row.local_path.replace(/^static\//, './') : null
     })
   }
 
@@ -152,7 +152,7 @@ async function performVectorSearch(db, query) {
         description: row.description,
         width: row.width,
         height: row.height,
-        webPath: row.local_path ? row.local_path.replace(/^static\//, '/') : null,
+        webPath: row.local_path ? row.local_path.replace(/^static\//, './') : null,
         similarity: similarity
       })
     } catch (e) {
@@ -226,7 +226,7 @@ export async function getIconById(db, iconName) {
         description: row.description,
         width: row.width,
         height: row.height,
-        webPath: row.local_path ? row.local_path.replace(/^static\//, '/') : null
+        webPath: row.local_path ? row.local_path.replace(/^static\//, './') : null
       }
     }
     

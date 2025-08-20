@@ -313,7 +313,7 @@ function App() {
       <MainWindow>
         <WindowHeader>
           <img 
-            src="/icons/list_of_icons_icon.png" 
+            src="./icons/list_of_icons_icon.png" 
             alt="List icon" 
             style={{ width: '16px', height: '16px', marginRight: '8px', imageRendering: 'pixelated' }}
           />
@@ -323,7 +323,7 @@ function App() {
           <Toolbar style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'center' }}>
             <SearchContainer>
               <MagicIcon 
-                src="/icons/internet_connection_wiz_3.png" 
+                src="./icons/internet_connection_wiz_3.png" 
                 alt="AI Search"
                 $searching={isSearching}
               />
