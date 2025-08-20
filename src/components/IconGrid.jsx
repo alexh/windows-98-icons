@@ -1,15 +1,14 @@
-import React, { memo, useMemo, useRef, useEffect, useState } from 'react'
+import React, { memo, useMemo } from 'react'
 import styled from 'styled-components'
 import { Panel } from 'react95'
 import { FixedSizeGrid as Grid } from 'react-window'
+import AutoSizer from 'react-virtualized-auto-sizer'
 
 const GridContainer = styled.div`
   width: 100%;
-  height: 400px;
+  height: 100%;
   background: white;
   border: 2px inset #c0c0c0;
-  display: flex;
-  justify-content: center;
 `
 
 const IconItem = styled.div`
@@ -111,45 +110,25 @@ const IconCell = memo(({ columnIndex, rowIndex, style, data }) => {
 IconCell.displayName = 'IconCell'
 
 const IconGrid = memo(({ icons, selectedIcons, onIconSelect, onIconDoubleClick }) => {
-  const containerRef = useRef(null)
-  const [containerWidth, setContainerWidth] = useState(800)
-  
-  // Update container width on resize
-  useEffect(() => {
-    const updateWidth = () => {
-      if (containerRef.current) {
-        setContainerWidth(containerRef.current.offsetWidth)
-      }
-    }
-    
-    updateWidth()
-    window.addEventListener('resize', updateWidth)
-    return () => window.removeEventListener('resize', updateWidth)
-  }, [])
-
-  const { columnsPerRow, rowCount, itemData, gridWidth } = useMemo(() => {
+  const { columnsPerRow, rowCount, itemData } = useMemo(() => {
     const itemWidth = 108 // 100px + 8px margin
-    const cols = Math.max(1, Math.floor(containerWidth / itemWidth))
-    const rows = Math.ceil(icons.length / cols)
-    const actualGridWidth = cols * itemWidth
     
     return {
-      columnsPerRow: cols,
-      rowCount: rows,
-      gridWidth: actualGridWidth,
+      columnsPerRow: 0, // Will be calculated in AutoSizer
+      rowCount: 0, // Will be calculated in AutoSizer
       itemData: {
         icons,
         selectedIcons,
         onIconSelect,
         onIconDoubleClick,
-        columnsPerRow: cols
+        itemWidth
       }
     }
-  }, [icons, selectedIcons, onIconSelect, onIconDoubleClick, containerWidth])
+  }, [icons, selectedIcons, onIconSelect, onIconDoubleClick])
 
   if (!icons || icons.length === 0) {
     return (
-      <GridContainer ref={containerRef}>
+      <GridContainer>
         <NoResultsContainer>
           No icons found. Try a different search term.
         </NoResultsContainer>
@@ -158,18 +137,33 @@ const IconGrid = memo(({ icons, selectedIcons, onIconSelect, onIconDoubleClick }
   }
 
   return (
-    <GridContainer ref={containerRef}>
-      <Grid
-        columnCount={columnsPerRow}
-        columnWidth={108}
-        rowCount={rowCount}
-        rowHeight={100}
-        height={400}
-        width={gridWidth}
-        itemData={itemData}
-      >
-        {IconCell}
-      </Grid>
+    <GridContainer>
+      <AutoSizer>
+        {({ height, width }) => {
+          const itemWidth = 108
+          const cols = Math.max(1, Math.floor(width / itemWidth))
+          const rows = Math.ceil(icons.length / cols)
+          
+          const finalItemData = {
+            ...itemData,
+            columnsPerRow: cols
+          }
+          
+          return (
+            <Grid
+              columnCount={cols}
+              columnWidth={itemWidth}
+              rowCount={rows}
+              rowHeight={100}
+              height={height}
+              width={width}
+              itemData={finalItemData}
+            >
+              {IconCell}
+            </Grid>
+          )
+        }}
+      </AutoSizer>
     </GridContainer>
   )
 })

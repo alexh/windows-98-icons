@@ -31,6 +31,8 @@ const MainWindow = styled(Window)`
   max-width: 1200px;
   height: 80vh;
   min-height: 600px;
+  display: flex;
+  flex-direction: column;
 `
 
 const SearchContainer = styled.div`
@@ -122,6 +124,18 @@ const MagicIcon = styled.img`
   }
 `
 
+const FlexWindowContent = styled(WindowContent)`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+`
+
+const GridContainer = styled.div`
+  flex: 1;
+  min-height: 0;
+`
+
 const StatsContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -130,6 +144,9 @@ const StatsContainer = styled.div`
   background: ${({ theme }) => theme.canvas};
   border: ${({ theme }) => `1px inset ${theme.borderDark}`};
   font-size: 11px;
+  position: relative;
+  z-index: 1;
+  margin: 0 -1px;
 `
 
 const LoadingContainer = styled.div`
@@ -373,7 +390,7 @@ function App() {
           <span className="desktop-title">Windows 98 Icons - Search & Download</span>
           <span className="mobile-title">Windows 98</span>
         </WindowHeader>
-        <WindowContent>
+        <FlexWindowContent>
           <ResponsiveToolbar>
             <SearchContainer>
               <MagicIcon 
@@ -412,12 +429,14 @@ function App() {
             </ButtonGroup>
           </ResponsiveToolbar>
 
-          <IconGrid
-            icons={filteredIcons}
-            selectedIcons={selectedIcons}
-            onIconSelect={handleIconSelect}
-            onIconDoubleClick={handleIconDoubleClick}
-          />
+          <GridContainer>
+            <IconGrid
+              icons={filteredIcons}
+              selectedIcons={selectedIcons}
+              onIconSelect={handleIconSelect}
+              onIconDoubleClick={handleIconDoubleClick}
+            />
+          </GridContainer>
 
           <StatsContainer>
             <span>
@@ -433,7 +452,7 @@ function App() {
               {selectedIcons.size} selected
             </span>
           </StatsContainer>
-        </WindowContent>
+        </FlexWindowContent>
       </MainWindow>
 
       {showModal && selectedIcon && (
