@@ -144,7 +144,7 @@ const IconGrid = memo(({ icons, selectedIcons, onIconSelect, onIconDoubleClick }
           const cols = Math.max(1, Math.floor(width / itemWidth))
           const rows = Math.ceil(icons.length / cols)
           const gridWidth = cols * itemWidth
-          const leftOffset = Math.max(0, (width - gridWidth) / 4)
+          const leftPadding = (width - gridWidth) / 2
           
           const finalItemData = {
             ...itemData,
@@ -152,7 +152,7 @@ const IconGrid = memo(({ icons, selectedIcons, onIconSelect, onIconDoubleClick }
           }
           
           return (
-            <div style={{ paddingLeft: leftOffset }}>
+            <div style={{ paddingLeft: leftPadding }}>
               <Grid
                 columnCount={cols}
                 columnWidth={itemWidth}
