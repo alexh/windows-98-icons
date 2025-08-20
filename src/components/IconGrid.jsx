@@ -8,6 +8,8 @@ const GridContainer = styled.div`
   height: 400px;
   background: white;
   border: 2px inset #c0c0c0;
+  display: flex;
+  justify-content: center;
 `
 
 const IconItem = styled.div`
@@ -125,14 +127,16 @@ const IconGrid = memo(({ icons, selectedIcons, onIconSelect, onIconDoubleClick }
     return () => window.removeEventListener('resize', updateWidth)
   }, [])
 
-  const { columnsPerRow, rowCount, itemData } = useMemo(() => {
+  const { columnsPerRow, rowCount, itemData, gridWidth } = useMemo(() => {
     const itemWidth = 108 // 100px + 8px margin
     const cols = Math.max(1, Math.floor(containerWidth / itemWidth))
     const rows = Math.ceil(icons.length / cols)
+    const actualGridWidth = cols * itemWidth
     
     return {
       columnsPerRow: cols,
       rowCount: rows,
+      gridWidth: actualGridWidth,
       itemData: {
         icons,
         selectedIcons,
@@ -161,7 +165,7 @@ const IconGrid = memo(({ icons, selectedIcons, onIconSelect, onIconDoubleClick }
         rowCount={rowCount}
         rowHeight={100}
         height={400}
-        width={containerWidth}
+        width={gridWidth}
         itemData={itemData}
       >
         {IconCell}

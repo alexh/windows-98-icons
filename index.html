@@ -31,9 +31,16 @@
     <!-- Additional Meta -->
     <meta name="author" content="Alex H">
     <meta name="keywords" content="Windows 98, icons, retro, nostalgic, pixel art, download, search, AI, vintage, 90s, computing">
-    <meta name="theme-color" content="#c0c0c0">
+    <meta name="theme-color" content="#008080">
     
     <script src="https://unpkg.com/sql.js@1.8.0/dist/sql-wasm.js"></script>
+    <style>
+      .mobile-title { display: none; }
+      @media (max-width: 768px) {
+        .desktop-title { display: none; }
+        .mobile-title { display: inline; }
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>

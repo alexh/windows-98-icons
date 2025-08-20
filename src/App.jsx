@@ -370,7 +370,8 @@ function App() {
             alt="List icon" 
             style={{ width: '16px', height: '16px', marginRight: '8px', imageRendering: 'pixelated' }}
           />
-          <span>Windows 98 Icons - Search & Download</span>
+          <span className="desktop-title">Windows 98 Icons - Search & Download</span>
+          <span className="mobile-title">Windows 98</span>
         </WindowHeader>
         <WindowContent>
           <ResponsiveToolbar>
