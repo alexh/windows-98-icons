@@ -38,13 +38,66 @@ const SearchContainer = styled.div`
   gap: 8px;
   align-items: center;
   flex-wrap: wrap;
+  flex: 1;
+  min-width: 0;
+  
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-bottom: 8px;
+    
+    span {
+      display: none; /* Hide "Smart Search:" label on mobile */
+    }
+  }
 `
 
 const ButtonGroup = styled.div`
   display: flex;
-  gap: 8px;
+  gap: 4px;
   align-items: center;
   flex-wrap: wrap;
+  
+  @media (max-width: 768px) {
+    width: 100%;
+    justify-content: space-between;
+    
+    button {
+      flex: 1;
+      min-width: 0;
+      font-size: 11px;
+      padding: 2px 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+`
+
+const ResponsiveToolbar = styled(Toolbar)`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: stretch;
+  
+  @media (min-width: 769px) {
+    flex-direction: row;
+    align-items: center;
+  }
+`
+
+const ResponsiveTextInput = styled(TextInput)`
+  width: 300px;
+  
+  @media (max-width: 768px) {
+    width: 100%;
+    flex: 1;
+  }
+`
+
+const ResponsiveSeparator = styled.div`
+  @media (max-width: 768px) {
+    display: none;
+  }
 `
 
 const AiSearchContainer = styled.div`
@@ -320,7 +373,7 @@ function App() {
           <span>Windows 98 Icons - Search & Download</span>
         </WindowHeader>
         <WindowContent>
-          <Toolbar style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'center' }}>
+          <ResponsiveToolbar>
             <SearchContainer>
               <MagicIcon 
                 src="./icons/internet_connection_wiz_3.png" 
@@ -328,18 +381,19 @@ function App() {
                 $searching={isSearching}
               />
               <span>Smart Search:</span>
-              <TextInput
+              <ResponsiveTextInput
                 value={searchQuery}
                 onChange={handleSearchChange}
                 placeholder="Describe what you're looking for..."
-                style={{ width: 300 }}
               />
               <Button onClick={handleClearSearch}>
                 Clear
               </Button>
             </SearchContainer>
             
-            <Separator orientation="vertical" />
+            <ResponsiveSeparator>
+              <Separator orientation="vertical" />
+            </ResponsiveSeparator>
             
             <ButtonGroup>
               <Button onClick={handleSelectAll}>
@@ -349,13 +403,13 @@ function App() {
                 onClick={handleDownloadSelected}
                 disabled={selectedIcons.size === 0}
               >
-                Download Selected ({selectedIcons.size})
+                Download ({selectedIcons.size})
               </Button>
               <Button onClick={handleClearSelection}>
-                Clear Selection
+                Clear
               </Button>
             </ButtonGroup>
-          </Toolbar>
+          </ResponsiveToolbar>
 
           <IconGrid
             icons={filteredIcons}
