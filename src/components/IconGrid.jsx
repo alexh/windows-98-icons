@@ -143,6 +143,8 @@ const IconGrid = memo(({ icons, selectedIcons, onIconSelect, onIconDoubleClick }
           const itemWidth = 108
           const cols = Math.max(1, Math.floor(width / itemWidth))
           const rows = Math.ceil(icons.length / cols)
+          const gridWidth = cols * itemWidth
+          const leftOffset = Math.max(0, (width - gridWidth) / 4)
           
           const finalItemData = {
             ...itemData,
@@ -150,17 +152,19 @@ const IconGrid = memo(({ icons, selectedIcons, onIconSelect, onIconDoubleClick }
           }
           
           return (
-            <Grid
-              columnCount={cols}
-              columnWidth={itemWidth}
-              rowCount={rows}
-              rowHeight={100}
-              height={height}
-              width={width}
-              itemData={finalItemData}
-            >
-              {IconCell}
-            </Grid>
+            <div style={{ paddingLeft: leftOffset }}>
+              <Grid
+                columnCount={cols}
+                columnWidth={itemWidth}
+                rowCount={rows}
+                rowHeight={100}
+                height={height}
+                width={gridWidth}
+                itemData={finalItemData}
+              >
+                {IconCell}
+              </Grid>
+            </div>
           )
         }}
       </AutoSizer>
