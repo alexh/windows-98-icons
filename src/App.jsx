@@ -25,6 +25,11 @@ const AppContainer = styled.div`
   padding: 20px;
   box-sizing: border-box;
   
+  @media (max-width: 768px) {
+    padding: 10px;
+    height: 100vh;
+  }
+  
   @media (max-height: 500px) and (orientation: landscape) {
     padding: 10px;
     min-height: 100vh;
