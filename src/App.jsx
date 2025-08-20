@@ -26,14 +26,17 @@ const AppContainer = styled.div`
   box-sizing: border-box;
   
   @media (max-width: 768px) {
-    padding: 10px;
-    height: 100vh;
+    padding: 5px;
+    height: 100dvh;
+    min-height: 100dvh;
+    overflow: hidden;
   }
   
   @media (max-height: 500px) and (orientation: landscape) {
-    padding: 10px;
-    min-height: 100vh;
-    height: 100vh;
+    padding: 5px;
+    height: 100dvh;
+    min-height: 100dvh;
+    overflow: hidden;
   }
 `
 
