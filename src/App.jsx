@@ -168,6 +168,42 @@ const StatsContainer = styled.div`
   margin: 0 -1px;
 `
 
+const CreditPopup = styled.div`
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 6px 12px;
+  background: ${({ theme }) => theme.canvas};
+  border: 2px outset ${({ theme }) => theme.borderLight};
+  border-radius: 0;
+  font-size: 11px;
+  font-family: 'MS Sans Serif', sans-serif;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  
+  @media (max-width: 768px) {
+    bottom: 10px;
+    right: 10px;
+    left: 10px;
+    text-align: center;
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+  
+  a {
+    color: #000080;
+    text-decoration: none;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+    
+    @media (max-width: 768px) {
+      color: #666;
+    }
+  }
+`
+
 const LoadingContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -481,6 +517,10 @@ function App() {
           onDownload={handleDownloadSingle}
         />
       )}
+      
+      <CreditPopup>
+        Built by <a href="https://alexhaynes.org" target="_blank" rel="noopener noreferrer">Alex Haynes</a>
+      </CreditPopup>
     </AppContainer>
   )
 }
